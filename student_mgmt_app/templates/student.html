@@ -1,0 +1,33 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+  
+<center>
+    <div class="container w-50" style="margin-left: 100px;margin-top: 25px;"> 
+        
+            <form method="post" action="{% url 'add_student' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h1>Signup</h1>
+        
+                <input type="text" name="std_name" class="form-control" placeholder="Student Name"><br>
+                <input type="text" name="std_address" class="form-control" placeholder="address"><br>
+                <input type="number" name="std_age" class="form-control" placeholder="age"><br>
+                
+                <select class="form-control " name="select" id="qwerty">
+                    {% for i in course %}
+        
+                    <option value="{{ i.id }}">{{ i.course_name }}</option>
+        
+                    {% endfor %}
+                </select>
+                
+                <input type="file" name="file" class="form-control mt-3" accept="image/*"><br>
+                
+                <button type="submit" class="btn btn-outline-info" style="margin-left: 40%;">ADD STUDENT</button>
+                <br>
+            </form>
+        
+    </div>
+</center>
+
+
+{% endblock %}
