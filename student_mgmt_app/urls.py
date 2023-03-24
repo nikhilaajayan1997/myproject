@@ -20,6 +20,8 @@ urlpatterns=[
     path('student_details',views.student_details,name='student_details'),
     path('teacher_page',views.teacher_page,name='teacher_page'),
     path('edit_userpage',views.edit_userpage,name='edit_userpage'),
-    path('edit_profile',views.edit_profile,name='edit_profile'),
+    path('edit_profile/<int:pk>',views.edit_profile,name='edit_profile'),
     path('logout',views.logout,name='logout'),
+    path('delete_teacher/<int:pk>',views.delete_teacher,name='delete_teacher'),
+    path('delete_student/<int:pk>',views.delete_student,name='delete_student'),
 ]

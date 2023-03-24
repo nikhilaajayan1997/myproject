@@ -33,17 +33,17 @@
                         <td>
                          
                             {% if p.std_image %}
-                                {{ p.std_image }} <br>
+                                <!-- {{ p.std_image }} <br> -->
                                 <img src="{{ p.std_image.url }}" class="w-25"style="width: 25%;height: 150px;">
                             <!-- {% else %}
                                 <img src="{% static 'images/flower.jpg' %}" alt="" style="width: 25%;height: 150px;"> -->
                             {% endif %}
                         </td>
-                        <!-- <td>
-                            <a rol="button" class="btn btn-outline-dark btn-sm" href="">EDIT</a>
+                        <td>
+                            <!-- <a rol="button" class="btn btn-outline-dark btn-sm" href="">EDIT</a> -->
                         
-                            <a rol="button" class="btn btn-outline-dark btn-sm" href="">DELETE</a>
-                        </td> -->
+                            <a role="button" class="btn btn-outline-dark btn-sm" href="{% url 'delete_student' p.id %}">DELETE</a>
+                        </td>
                      </tr>
                     {% endfor %}
                 </tbody>

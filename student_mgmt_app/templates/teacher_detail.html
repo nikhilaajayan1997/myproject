@@ -7,51 +7,53 @@
 <div class="container mt-5">
     <h1 class="alert alert-dark text-center">
         *TEACHER DETAILS*
-        <!-- <a role="button" class="btn btn-outline-dark" href="{% url 'load_page' %}">Add</a> -->
+        <!-- <a role="button" class="btn btn-outline-dark" href="">Add</a> -->
     </h1>
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
-            <table class="table text-center ">
-                <thead>
-                    <tr>
-                        <th scope="col">FIRST NAME</th>
-                        <th scope="col">LAST NAME</th>
-                        <th scope="col">ADDRESS</th>
-                        <th scope="col">AGE</th>
-                        <th scope="col">EMAIL</th>
-                        <th scope="col">COURSE</th> 
-                        <th scope="col">IMAGE</th>
-                        <!-- <th scope="col">ACTION</th> -->
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for p in teachers %}
-                     <tr>
-                        <td class="pt-4">{{ p.teacher.first_name }}</td>
-                        <td class="pt-4">{{ p.teacher.last_name }}</td>
-                        <td class="pt-4">{{ p.address }}</td>
-                        <td class="pt-4">{{ p.age }}</td>
-                        <td class="pt-4">{{ p.teacher.email }}</td>
-                        <td class="pt-4">{{ p.course.course_name }}</td>
-                        <td>
-                         
-                            {% if p.image %}
-                                {{ p.image }} <br>
-                                <img src="{{ p.image.url }}" class="w-25"style="width: 25%;height: 150px;">
-                            {% else %}
-                                <img src="{% static 'images/flower.jpg' %}" alt="no image" style="width: 25%;height: 150px;">
-                            {% endif %}
-                        </td>
-                        <!-- <td>
-                            <a rol="button" class="btn btn-outline-dark btn-sm" href="">EDIT</a>
-                        
-                            <a rol="button" class="btn btn-outline-dark btn-sm" href="">DELETE</a>
-                        </td> -->
-                     </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <form>
+                <table class="table text-center ">
+                    <thead>
+                        <tr>
+                            <th scope="col">FIRST NAME</th>
+                            <th scope="col">LAST NAME</th>
+                            <th scope="col">ADDRESS</th>
+                            <!-- <th scope="col">AGE</th> -->
+                            <th scope="col">EMAIL</th>
+                            <th scope="col">COURSE</th> 
+                            <th scope="col">IMAGE</th>
+                            <th scope="col">ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in teachers %}
+                         <tr>
+                            <td class="pt-4">{{ p.teacher.first_name }}</td>
+                            <td class="pt-4">{{ p.teacher.last_name }}</td>
+                            <td class="pt-4">{{ p.address }}</td>
+                            <!-- <td class="pt-4">{{ p.age }}</td> -->
+                            <td class="pt-4">{{ p.teacher.email }}</td>
+                            <td class="pt-4">{{ p.course.course_name }}</td>
+                            <td>
+                             
+                                {% if p.image %}
+                                    <!-- {{ p.image }}  -->
+                                    <img src="{{ p.image.url }}" class="w-50"style="width: 25%;height: 150px;">
+                                {% else %}
+                                    <img src="{% static 'images/person1.png' %}" alt="no image" style="width: 25%;height: 150px;">
+                                {% endif %}
+                            </td>
+                            <td>
+                                <!-- <a role="button" class="btn btn-outline-dark btn-sm" href="">EDIT</a> -->
+                            
+                                <a role="button" class="btn btn-outline-dark btn-sm" href="{% url 'delete_teacher' p.id %}">DELETE</a>
+                            </td>
+                         </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </form>
         </div>
         <div class="col-sm-1"></div>
     </div>

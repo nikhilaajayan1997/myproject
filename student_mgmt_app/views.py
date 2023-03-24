@@ -123,28 +123,16 @@ def edit_userpage(request):
     cdata=course_model.objects.all()
     return render(request,'edit_profile.html',{'user':users,'cdata':cdata})
 
-def edit_profile(request):
+def edit_profile(request,pk):
     if request.method=='POST':
-        user=teacher_model.objects.get(teacher=request.user)
-        # user1=User.objects.filter(id=request.user)
-        # user1=User.objects.get(request.user)
-        # student=student_table.objects.get(id=pk)
-        # student.first_name=request.POST.get('first_name')
-        # student.last_name=request.POST.get('last_name')
-        # student.email=request.POST.get('email_id')
-        # student.phone=request.POST.get('phone_no')
-        # student.course=request.POST.get('course_name')
-        # student.address=request.POST.get('address')
-        # student.image=request.FILES.get('file')
-        # old=student.image
-        # new=request.FILES.get('file')
-        # if old != NULL and new == NULL:
-        #     student.image=old
-        # else:
-        #     student.image=new
+        user=teacher_model.objects.get(id=pk)
+        user_id=user.teacher.id
+        user1=User.objects.get(id=user_id)
+
+
+        
         if len(request.FILES)!=0:
-            # if len(student.image)>0:
-            #     os.remove(student.image.path)
+           
            user.image=request.FILES['file']
         
         course=request.POST.get('select')
@@ -154,16 +142,35 @@ def edit_profile(request):
         user.course=cdata
         user.address=request.POST.get('address')
         user.teacher.username=request.POST.get('username')
-        user.teacher.first_name=request.POST.get('first_name')
-        user.teacher.last_name=request.POST.get('last_name')
+        user1.first_name=request.POST.get('first_name')
+        user1.last_name=request.POST.get('last_name')
             # student.image=request.FILES.get('file')  
             # cdata=course_model.objects.get(id=course)     
         user.save()
+        user1.save()
         return redirect('teacher_page')
 
 def logout(request):
     auth.logout(request)
     return redirect('load_page')
+
+def delete_teacher(request,pk):
+    user=teacher_model.objects.get(id=pk)
+    user_id=user.teacher.id
+    user1=User.objects.get(id=user_id)
+    user.delete()
+    user1.delete()
+
+    return redirect('teacher_details')
+
+def delete_student(request,pk):
+    user=student_model.objects.get(id=pk)
+    # user_id=user.teacher.id
+    # user1=User.objects.get(id=user_id)
+    user.delete()
+    # user1.delete()
+
+    return redirect('student_details')
 
 
 

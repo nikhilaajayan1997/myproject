@@ -6,9 +6,9 @@
 <center>
     <div class="container w-50" style="margin-left: 100px;margin-top: 25px;"> 
         
-            <form method="post" action="{% url 'edit_profile' %}" enctype="multipart/form-data">
+            <form method="post" action="/edit_profile/{{ user.id }}" enctype="multipart/form-data">
                 {% csrf_token %}
-                <h1>Signup</h1>
+                <h1>EDIT PROFILE</h1>
                 <label for="">First Name</label>
                 <input type="text" name="first_name" class="form-control"  value="{{user.teacher.first_name}}"><br>
                 <label for="">Last Name</label>
@@ -38,7 +38,7 @@
                 {% if user.image %}
                     <img src="{{ user.image.url }}" class="w-25 mt-3"><br>
                 {% else %}
-                    <img src="{% static 'images/flower.jpg' %}" class="w-25"><br>
+                    <img src="{% static 'images/person1.png' %}" class="w-25"><br>
                 {% endif %}
                 
                 <input type="file" name="file" class="form-control mt-3" accept="image/*" value="{{user.image}}">
